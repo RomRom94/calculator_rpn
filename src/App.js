@@ -76,6 +76,13 @@ class App extends Component {
     this.setState({ stack: [0] })
   }
 
+  actionPM = () => {
+    const stackVals = this.state.stack
+    let inputActive = -1 * parseFloat(stackVals[0], 10)
+    inputActive = inputActive.toString()
+    this.setState({ stack: [inputActive, ...stackVals.slice(1)] })
+  }
+
   render() {
     return (
       <div className="App">
@@ -96,9 +103,6 @@ class App extends Component {
                 </td>
                 <td className="calc_td_btn">
                   <Clear symbol='<-' click={() => this.clearHandler()} />
-                </td>
-                <td className="calc_td_btn">
-                  <input type="button" className="calc_btn" value="%" />
                 </td>
                 <td className="calc_td_btn">
                   <Button symbol='+' click={() => this.additionHandler()} />
@@ -151,7 +155,7 @@ class App extends Component {
                   <Button symbol='0' click={() => this.appendToInputActive(0)} />
                 </td>
                 <td className="calc_td_btn">
-                  <input type="button" className="calc_btn" value="&plusmn;" />
+                  <Button symbol='+/-' click={() => this.actionPM()} />
                 </td>
                 <td className="calc_td_btn">
                   <Button symbol=',' click={() => this.decimalToInputActive()} />
