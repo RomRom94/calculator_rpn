@@ -1,0 +1,146 @@
+/***********************************
+ ************* RESET ***************
+ ***********************************/
+
+* {
+  padding: 0;
+  margin: 0;
+}
+img{
+  max-width: 100%;
+  height: auto;
+}
+ul{
+  list-style: none;
+}
+a {
+  text-decoration: none;
+}
+
+/***********************************
+ *********** END RESET *************
+ ***********************************/
+
+html{
+  font-size: 62.5%;
+}
+body {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.5;
+  background-color: #101418;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.App{
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container{
+  width: 375px;
+  height: 667px;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+  background-color: #202227;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 3rem;
+}
+
+.calculatrice{
+  width: 100%;
+  height: 100%;
+  table-layout: fixed ;
+  tr:first-of-type{
+    height: 200px;
+   td{
+     text-align: right;
+     vertical-align: bottom;
+     padding-bottom: 20px;
+     div{
+       display: flex;
+       align-items: flex-end;
+       justify-content: flex-end;
+       flex-flow: row wrap;
+     }
+     h1{
+       color: white;
+       opacity: 0.7;
+       font-size: 2.5rem;
+       font-weight: 300;
+       -webkit-transition: all 0.3s ease-in-out;
+       -moz-transition: all 0.3s ease-in-out;
+       -ms-transition: all 0.3s ease-in-out;
+       -o-transition: all 0.3s ease-in-out;
+       transition: all 0.3s ease-in-out;
+       &:last-of-type{
+         color: white;
+         font-size: 7rem;
+         font-weight: 400;
+         opacity: 1;
+         width: 100%;
+         margin-top: -5rem;
+       }
+     }
+    }
+  }
+  td{
+    text-align: center;
+    width: 25%;
+    padding: 5px;
+    &.button{
+      &.clear{
+        button{
+          color: #FE5A2D;
+        }
+      }
+      &.enter{
+        & > div{
+          background-image: linear-gradient(to top, #FE5A2D 0%, #FE0D98 100%);
+          button{
+            font-size: 2rem;
+            font-weight: 700;
+          }
+        }
+      }
+      & > div{
+        height: 100%;
+        background-color: #2F3136;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+    div{
+      height: 100%;
+      width: 100%;
+      button{
+        height: 100%;
+        width: 100%;
+        border: 0px;
+        background-color: transparent;
+        font-size: 2.5rem;
+        font-weight: 600;
+        color: #ffffff;
+        cursor: pointer;
+        font-family: 'Quicksand', sans-serif;
+        &:focus{
+          outline: none;
+        }
+      }
+    }
+  }
+}

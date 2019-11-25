@@ -91,34 +91,41 @@ class App extends Component {
             <tbody>
               <tr>
                 <td colSpan="4" className="calc_td_resultat">
-                  <h1 className="input-active">{this.state.stack[0]}</h1>
+                  <div>
+                    {this.state.stack.slice(0).reverse().map(el => (
+                        <h1 className="input-active">{el}</h1>
+                    ))}
+                  </div>
                 </td>
               </tr>
               <tr>
-                <td className="calc_td_btn">
-                  <Push symbol='enter' click={() => this.pushToStackHandler()} />
+                <td className="calc_td_btn button clear">
+                  <ClearAll symbol='C' click={() => this.clearAll()} />
                 </td>
-                <td className="calc_td_btn">
-                  <ClearAll symbol='AC' click={() => this.clearAll()} />
+                <td className="calc_td_btn button">
+                  <Button symbol='±' click={() => this.actionPM()} />
                 </td>
-                <td className="calc_td_btn">
+                <td className="calc_td_btn button">
+                  <Button symbol='/' click={() => this.divisionHandler()} />
+                </td>
+                <td className="calc_td_btn button">
+                  <Button symbol='×' click={() => this.multiplicationHandler()} />
+                </td>
+                {/*<td className="calc_td_btn">
                   <Clear symbol='<-' click={() => this.clearHandler()} />
-                </td>
-                <td className="calc_td_btn">
-                  <Button symbol='+' click={() => this.additionHandler()} />
-                </td>
+                </td>*/}
               </tr>
               <tr>
                 <td className="calc_td_btn">
-                  <Button symbol='7' click={() => this.appendToInputActive(7)} />
+                  <Button symbol='1' click={() => this.appendToInputActive(1)} />
                 </td>
                 <td className="calc_td_btn">
-                  <Button symbol='8' click={() => this.appendToInputActive(8)} />
+                  <Button symbol='2' click={() => this.appendToInputActive(2)} />
                 </td>
                 <td className="calc_td_btn">
-                  <Button symbol='9' click={() => this.appendToInputActive(9)} />
+                  <Button symbol='3' click={() => this.appendToInputActive(3)} />
                 </td>
-                <td className="calc_td_btn">
+                <td className="calc_td_btn button">
                   <Button symbol='-' click={() => this.subtractionHandler()} />
                 </td>
               </tr>
@@ -132,30 +139,28 @@ class App extends Component {
                 <td className="calc_td_btn">
                   <Button symbol='6' click={() => this.appendToInputActive(6)} />
                 </td>
-                <td className="calc_td_btn">
-                  <Button symbol='×' click={() => this.multiplicationHandler()} />
+                <td className="calc_td_btn button">
+                  <Button symbol='+' click={() => this.additionHandler()} />
                 </td>
               </tr>
               <tr>
                 <td className="calc_td_btn">
-                  <Button symbol='1' click={() => this.appendToInputActive(1)} />
+                  <Button symbol='7' click={() => this.appendToInputActive(7)} />
                 </td>
                 <td className="calc_td_btn">
-                  <Button symbol='2' click={() => this.appendToInputActive(2)} />
+                  <Button symbol='8' click={() => this.appendToInputActive(8)} />
                 </td>
                 <td className="calc_td_btn">
-                  <Button symbol='3' click={() => this.appendToInputActive(3)} />
+                  <Button symbol='9' click={() => this.appendToInputActive(9)} />
                 </td>
-                <td className="calc_td_btn">
-                  <Button symbol='/' click={() => this.divisionHandler()} />
+                <td className="calc_td_btn button enter" rowSpan="2">
+                  <Push symbol='Enter' click={() => this.pushToStackHandler()} />
                 </td>
               </tr>
               <tr>
+                <td></td>
                 <td className="calc_td_btn">
                   <Button symbol='0' click={() => this.appendToInputActive(0)} />
-                </td>
-                <td className="calc_td_btn">
-                  <Button symbol='+/-' click={() => this.actionPM()} />
                 </td>
                 <td className="calc_td_btn">
                   <Button symbol=',' click={() => this.decimalToInputActive()} />
