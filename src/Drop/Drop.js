@@ -1,8 +1,8 @@
 import React from 'react';
 
-const clear = (props) => {
+const drop = (props) => {
     return (
-        <div className="Clear">
+        <div className="Drop">
             <button type="button" onClick={props.click}>
                 {props.symbol}
             </button>
@@ -10,4 +10,4 @@ const clear = (props) => {
     )
 };
 
-export default clear;
+export default drop;
