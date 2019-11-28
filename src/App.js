@@ -3,6 +3,7 @@ import ClearAll from './ClearAll/ClearAll.js';
 import Push from './Push/Push.js';
 import Button from './Button/Button.js';
 import Drop from './Drop/Drop.js'
+import Swap from './Swap/Swap.js'
 import './App.css';
 
 class App extends Component {
@@ -83,6 +84,12 @@ class App extends Component {
     this.setState({ stack: [inputActive, ...stackVals.slice(1)] })
   }
 
+  swap = () => {
+    const stackVals = this.state.stack;
+    let inputActive = stackVals[0];
+    this.setState({ stack: [stackVals[0] = stackVals[1], stackVals[1] = inputActive, ...stackVals.slice(2)] })
+  }
+
   render() {
     return (
       <div className="App">
@@ -91,6 +98,7 @@ class App extends Component {
             <tbody>
               <tr>
                 <td colSpan="4" className="calc_td_resultat">
+                  <Swap click={() => this.swap()} />
                   <div>
                     {this.state.stack.slice(0).reverse().map(el => (
                       <h1 className="input-active">{el}</h1>
@@ -155,14 +163,14 @@ class App extends Component {
                 </td>
               </tr>
               <tr>
-                <td className="button">
-                  <Drop symbol='&#8701;' click={() => this.dropHandler()} />
-                </td>
                 <td >
                   <Button symbol='0' click={() => this.appendToInputActive(0)} />
                 </td>
                 <td >
                   <Button symbol=',' click={() => this.decimalToInputActive()} />
+                </td>
+                <td className="button">
+                  <Drop click={() => this.dropHandler()} />
                 </td>
               </tr>
             </tbody>
