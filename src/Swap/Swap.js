@@ -1,6 +1,6 @@
 import React from 'react';
 
-const drop = (props) => {
+const swap = (props) => {
     return (
         <div className="Swap">
             <button type="button" onClick={props.click}>
@@ -10,4 +10,4 @@ const drop = (props) => {
     )
 };
 
-export default drop;
+export default swap;

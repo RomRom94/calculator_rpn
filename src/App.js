@@ -4,6 +4,7 @@ import Push from './Push/Push.js';
 import Button from './Button/Button.js';
 import Drop from './Drop/Drop.js'
 import Swap from './Swap/Swap.js'
+import Delete from './Delete/Delete'
 import './App.css';
 
 class App extends Component {
@@ -11,33 +12,33 @@ class App extends Component {
     stack: [0]
   }
 
-  pushToStackHandler = () => {
+  enter = () => {
     const stackVals = this.state.stack;
     this.setState({ stack: [0, ...stackVals] });
   }
 
-  appendToInputActive = (value) => {
+  appendNumber = (value) => {
     const stackVals = this.state.stack;
     let inputActive = stackVals[0];
     inputActive = inputActive ? inputActive.toString() + value.toString() : value.toString();
     this.setState({ stack: [inputActive, ...stackVals.slice(1)] });
   }
 
-  additionHandler = () => {
+  addition = () => {
     const stackVals = this.state.stack
     let inputActive = parseFloat(stackVals[1], 10) + parseFloat(stackVals[0], 10)
     inputActive = inputActive.toString()
     this.setState({ stack: [inputActive, ...stackVals.slice(2)] })
   }
 
-  subtractionHandler = () => {
+  subtraction = () => {
     const stackVals = this.state.stack
     let inputActive = parseFloat(stackVals[1], 10) - parseFloat(stackVals[0], 10)
     inputActive = inputActive.toString()
     this.setState({ stack: [inputActive, ...stackVals.slice(2)] })
   }
 
-  multiplicationHandler = () => {
+  multiplication = () => {
     const stackVals = this.state.stack
     let inputActive = parseFloat(stackVals[1], 10) * parseFloat(stackVals[0], 10)
     inputActive = inputActive.toString()
@@ -51,7 +52,7 @@ class App extends Component {
     this.setState({ stack: [inputActive, ...stackVals.slice(2)] })
   }
 
-  decimalToInputActive = () => {
+  decimal = () => {
     const stackVals = this.state.stack;
     let inputActive = stackVals[0];
     inputActive = inputActive.toString();
@@ -65,7 +66,7 @@ class App extends Component {
     }
   }
 
-  dropHandler = () => {
+  delete = () => {
     const stackVals = this.state.stack
     let inputActive = stackVals[0]
     inputActive = inputActive ? inputActive.toString().slice(0, -1) : inputActive
@@ -73,11 +74,17 @@ class App extends Component {
     this.setState({ stack: [inputActive, ...stackVals.slice(1)] })
   }
 
+  drop = () => {
+    const stackVals = this.state.stack;
+    let inputActive = stackVals[0];
+    this.setState({ stack: [inputActive, ...stackVals.slice(2)] })
+  }
+
   clearAll = () => {
     this.setState({ stack: [0] })
   }
 
-  actionPM = () => {
+  plusMinus = () => {
     const stackVals = this.state.stack
     let inputActive = -1 * parseFloat(stackVals[0], 10)
     inputActive = inputActive.toString()
@@ -98,7 +105,10 @@ class App extends Component {
             <tbody>
               <tr>
                 <td colSpan="4" className="calc_td_resultat">
-                  <Swap click={() => this.swap()} />
+                  <div className="microActions">
+                    <Swap click={() => this.swap()} />
+                    <Delete click={() => this.delete()} />
+                  </div>
                   <div>
                     {this.state.stack.slice(0).reverse().map(el => (
                       <h1 className="input-active">{el}</h1>
@@ -111,66 +121,66 @@ class App extends Component {
                   <ClearAll symbol='C' click={() => this.clearAll()} />
                 </td>
                 <td className="button">
-                  <Button symbol='±' click={() => this.actionPM()} />
+                  <Button symbol='±' click={() => this.plusMinus()} />
                 </td>
                 <td className="button">
                   <Button symbol='/' click={() => this.divisionHandler()} />
                 </td>
                 <td className="button">
-                  <Button symbol='×' click={() => this.multiplicationHandler()} />
+                  <Button symbol='×' click={() => this.multiplication()} />
                 </td>
               </tr>
               <tr>
                 <td >
-                  <Button symbol='1' click={() => this.appendToInputActive(1)} />
+                  <Button symbol='1' click={() => this.appendNumber(1)} />
                 </td>
                 <td >
-                  <Button symbol='2' click={() => this.appendToInputActive(2)} />
+                  <Button symbol='2' click={() => this.appendNumber(2)} />
                 </td>
                 <td >
-                  <Button symbol='3' click={() => this.appendToInputActive(3)} />
+                  <Button symbol='3' click={() => this.appendNumber(3)} />
                 </td>
                 <td className="button">
-                  <Button symbol='-' click={() => this.subtractionHandler()} />
+                  <Button symbol='-' click={() => this.subtraction()} />
                 </td>
               </tr>
               <tr>
                 <td >
-                  <Button symbol='4' click={() => this.appendToInputActive(4)} />
+                  <Button symbol='4' click={() => this.appendNumber(4)} />
                 </td>
                 <td >
-                  <Button symbol='5' click={() => this.appendToInputActive(5)} />
+                  <Button symbol='5' click={() => this.appendNumber(5)} />
                 </td>
                 <td >
-                  <Button symbol='6' click={() => this.appendToInputActive(6)} />
+                  <Button symbol='6' click={() => this.appendNumber(6)} />
                 </td>
                 <td className="button">
-                  <Button symbol='+' click={() => this.additionHandler()} />
+                  <Button symbol='+' click={() => this.addition()} />
                 </td>
               </tr>
               <tr>
                 <td >
-                  <Button symbol='7' click={() => this.appendToInputActive(7)} />
+                  <Button symbol='7' click={() => this.appendNumber(7)} />
                 </td>
                 <td >
-                  <Button symbol='8' click={() => this.appendToInputActive(8)} />
+                  <Button symbol='8' click={() => this.appendNumber(8)} />
                 </td>
                 <td >
-                  <Button symbol='9' click={() => this.appendToInputActive(9)} />
+                  <Button symbol='9' click={() => this.appendNumber(9)} />
                 </td>
                 <td className="button enter" rowSpan="2">
-                  <Push symbol='Enter' click={() => this.pushToStackHandler()} />
+                  <Push symbol='Enter' click={() => this.enter()} />
                 </td>
               </tr>
               <tr>
-                <td >
-                  <Button symbol='0' click={() => this.appendToInputActive(0)} />
-                </td>
-                <td >
-                  <Button symbol=',' click={() => this.decimalToInputActive()} />
-                </td>
                 <td className="button">
-                  <Drop click={() => this.dropHandler()} />
+                  <Drop symbol='D' click={() => this.drop()} />
+                </td>
+                <td >
+                  <Button symbol='0' click={() => this.appendNumber(0)} />
+                </td>
+                <td >
+                  <Button symbol=',' click={() => this.decimal()} />
                 </td>
               </tr>
             </tbody>
